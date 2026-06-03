@@ -1,14 +1,17 @@
 package shall.domain;
 
 import shall.domain.enums.Gender;
+import shall.domain.enums.SubCategory;
 import shall.error.InvalidAge;
-import shall.services.CheckCategory;
+import shall.services.Check;
+import shall.services.impl.Disciplinable;
 
 import java.util.Random;
 
-public class Player extends Person {
+public class Player extends Person implements Disciplinable {
     private int shirtNumber;
     private String team;
+    private SubCategory category;
     private int yellowCard;
     private int goalsScored;
     private boolean isExpelled;
@@ -26,9 +29,10 @@ public class Player extends Person {
     public Player(String name, int age, Gender gender, int shirtNumber) {
         super(name, age, gender);
         if(age<6){
-            throw new InvalidAge("The player " +name +"was denied. Minimum age is 6 years old.");
+            throw new InvalidAge("The player " +name +" was denied. Minimum age is 6 years old.");
         } this.shirtNumber = shirtNumber;
         this.isExpelled =false;
+        this.category = Check.checkingSubCategory(age);
     }
 
     protected void topScored(){
@@ -42,13 +46,14 @@ public class Player extends Person {
         this.yellowCard++;
         System.out.println("🟨 Player took a card");
         if(this.yellowCard >1){
-            System.out.println("🟥 Player sent off!");
+            System.out.println("🟥 Player sent off! (Second Yellow Card)");
             this.isExpelled =true;
             return;
         }
         System.out.println("Player can't take another card!.");
     }
 
+    @Override
     public void madeMistake() {
         if(this.isExpelled){
             throw new IllegalStateException("Invalid action, the " +this.getName()  +" has already been sent off and cannot commit fouls");
@@ -96,8 +101,15 @@ public class Player extends Person {
         this.team = team;
     }
 
+    public SubCategory getCategory() {
+        return category;
+    }
+
+    @Override
+    public boolean isExpelled() { return this.isExpelled; }
+
     public void checkingCategory(){
-        CheckCategory.checkingSubCategory(this.getAge());
+        Check.checkingSubCategory(this.getAge());
     }
 
     @Override
@@ -113,8 +125,9 @@ public class Player extends Person {
         System.out.println("name: " +this.getName());
         System.out.println("age: " +this.getAge());
         System.out.println("gender: " +this.getGender());
-        System.out.println("yellowCard: " +this.yellowCard);
+        System.out.println("category: " +category);
         System.out.println("shirtNumber: " +this.getShirtNumber());
+        System.out.println("yellowCard: " +this.yellowCard);
         System.out.println("isExpelled? " +this.isExpelled);
         System.out.println("------------------------------");
     }

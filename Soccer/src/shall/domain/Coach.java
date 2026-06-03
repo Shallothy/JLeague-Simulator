@@ -2,10 +2,15 @@ package shall.domain;
 
 import shall.domain.enums.Gender;
 import shall.error.InvalidAge;
+import shall.services.impl.Disciplinable;
 
-public class Coach extends Person {
+import java.util.Random;
+
+public class Coach extends Person implements Disciplinable {
     private String preferredFormation;
     private int experienceYears;
+    private boolean isExpelled;
+    private int yellowCard;
 
     public Coach() {
         this("Unnamed Coach", 18, null, "4-4-2", 0);
@@ -27,6 +32,8 @@ public class Coach extends Person {
         }
         this.preferredFormation = preferredFormation;
         this.experienceYears = experienceYears;
+        this.isExpelled =false;
+        this.yellowCard =0;
     }
 
     public String getPreferredFormation() {
@@ -43,6 +50,43 @@ public class Coach extends Person {
 
     public void setExperienceYears(int experienceYears) {
         this.experienceYears = experienceYears;
+    }
+
+    @Override
+    public boolean isExpelled(){ return this.isExpelled; }
+
+    protected void receiveYellowCard() {
+        this.yellowCard++;
+        System.out.println("🟨 Coach took a card");
+        if(this.yellowCard >1){
+            System.out.println("🟥 Coach sent off! (Second Yellow Card)");
+            this.isExpelled =true;
+            return;
+        }
+        System.out.println("Coach can't take another card!.");
+    }
+
+    @Override
+    public void madeMistake() {
+        if(this.isExpelled){
+            throw new IllegalStateException("INVALID ACTION! Coach " + this.getName() + " has already been sent off to the stands.");
+        }
+        Random random =new Random();
+        int judgment = random.nextInt(100) + 1;
+
+        System.out.printf("⏱️ Coach %s is complaining excessively to the referee! The referee is approaching...%n", this.getName());
+        if(judgment <= 60 ) {
+            System.out.println("➡️ Just a verbal warning. The coach must calm down.");
+
+        } else if(judgment <= 90){
+            receiveYellowCard();
+
+        } else {
+            System.out.println("🟥 DIRECT RED CARD! The coach is sent off to the stands!");
+            this.yellowCard +=2;
+            this.isExpelled =true;
+        }
+        System.out.println();
     }
 
     @Override
