@@ -37,11 +37,11 @@ public class Team {
         this.teamName = teamName;
     }
 
-    public Player[] getPlayers(){ return Arrays.copyOf(this.PLAYERS, this.size); }
-
     public void setCoach(Coach coach) {
         this.coach = coach;
     }
+
+    public Player[] getPlayers(){ return Arrays.copyOf(this.PLAYERS, this.size); }
 
     public void addPlayer(Player player) {
         if(player==null){

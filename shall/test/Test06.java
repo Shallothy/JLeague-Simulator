@@ -16,8 +16,8 @@ public class Test06 {
         Player eustacio = new Player("Eustácio", 56);
         teamFull.addPlayer(eustacio);
 
-        for (int i = 0; i < teamFull.getPLAYERS().length; i++) {
-            System.out.println(teamFull.getPLAYERS()[i].getName());
+        for (int i = 0; i < teamFull.getPlayers().length; i++) {
+            System.out.println(teamFull.getPlayers()[i].getName());
         }
 
         System.out.println("END!");
