@@ -37,8 +37,7 @@ public class Team {
         this.teamName = teamName;
     }
 
-    public Player[] getPLAYERS(){ return Arrays.copyOf(this.PLAYERS, this.size); }
-
+    public Player[] getPlayers(){ return Arrays.copyOf(this.PLAYERS, this.size); }
 
     public void setCoach(Coach coach) {
         this.coach = coach;
