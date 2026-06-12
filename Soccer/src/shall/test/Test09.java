@@ -10,7 +10,7 @@ import shall.error.InvalidAge;
 import shall.error.NullPlayerException;
 
 public class Test09 {
-    static void main() {
+    static void main(String[] args) {
         System.out.println("=== PREPARING THE TEAMS ===\n");
 
         Team brazil = new Team("Brazil", 3);
@@ -37,9 +37,9 @@ public class Test09 {
             argentina.addPlayer(messi);
             argentina.addPlayer(diMaria);
 
-            brazil.printDataTeam();
+            brazil.printTeamData();
             System.out.println();
-            argentina.printDataTeam();
+            argentina.printTeamData();
 
             System.out.println("\n==================================\n");
 
@@ -47,23 +47,23 @@ public class Test09 {
             Match worldCupFinal = new Match(brazil, argentina);
 
             vini.scoreGoal();
-            worldCupFinal.goalHome();
+            worldCupFinal.addHomeGoal();
 
             messi.scoreGoal();
-            worldCupFinal.goalVisit();
+            worldCupFinal.addVisitingGoal();
 
             rodrygo.scoreGoal();
-            worldCupFinal.goalHome();
+            worldCupFinal.addHomeGoal();
 
             vini.scoreGoal();
-            worldCupFinal.goalHome();
+            worldCupFinal.addHomeGoal();
 
             System.out.println("\n=== FULL TIME ===");
-            worldCupFinal.winnerMatch();
+            worldCupFinal.getWinner();
 
             System.out.println("\n=== MATCH HIGHLIGHTS ===");
             System.out.println("Top scorer for " + brazil.getTeamName() + ":");
-            brazil.getTopScored();
+            brazil.getTopScorer();
 
         } catch (InvalidAge | FullTeam e) {
             System.out.println("\nLINEUP ERROR: " + e.getMessage());

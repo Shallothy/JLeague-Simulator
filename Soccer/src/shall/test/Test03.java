@@ -3,10 +3,10 @@ package shall.test;
 import shall.domain.Player;
 import shall.domain.Team;
 import shall.domain.enums.Gender;
-import shall.services.CheckCategory;
+import shall.services.Check;
 
 public class Test03 {
-    static void main() {
+    static void main(String[] args) {
 
         Player player1 = new Player("Rebeca",21,Gender.GENDER_FEMALE,7);
         Player player2 = new Player("Rodrigo",22,Gender.GENDER_MALE,12);
@@ -38,12 +38,12 @@ public class Test03 {
 
         player1.checkingCategory();
         player2.checkingCategory();
-        CheckCategory.checkingSubCategory(player3.getAge());
-        CheckCategory.checkingSubCategory(player4.getAge());
+        Check.checkingSubCategory(player3.getAge());
+        Check.checkingSubCategory(player4.getAge());
         System.out.println("--------------------");
-        CheckCategory.genderChecking(player1);
-        CheckCategory.genderChecking(player2);
-        CheckCategory.genderChecking(player3);
-        CheckCategory.genderChecking(player4);
+        Check.genderChecking(player1);
+        Check.genderChecking(player2);
+        Check.genderChecking(player3);
+        Check.genderChecking(player4);
     }
 }
