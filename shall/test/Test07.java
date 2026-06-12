@@ -7,7 +7,7 @@ import shall.domain.enums.Gender;
 import shall.error.FullTeam;
 
 public class Test07 {
-    static void main() {
+    static void main(String[] args) {
         Team franca = new Team("França",1);
 
         try {
@@ -18,6 +18,6 @@ public class Test07 {
         } catch (FullTeam erro){
             System.out.println("Warning to the customer: " +erro.getMessage());
         }
-        franca.printDataTeam();
+        franca.printTeamData();
     }
 }

@@ -4,7 +4,7 @@ import shall.domain.Player;
 import shall.domain.enums.Gender;
 
 public class Test10 {
-    static void main() {
+    static void main(String[] args) {
         System.out.println("=== CARD SYSTEM TEST (VAR) ===\n");
 
         Player felipeMelo = new Player("Felipe Melo", 40, Gender.GENDER_MALE, 30);
@@ -20,11 +20,11 @@ public class Test10 {
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
-                    System.out.println("Warning to customer: " +e.getMessage());
+                    System.out.println("Warning to the customer: " +e.getMessage());
                 }
             }
         } catch (IllegalStateException e) {
-            System.out.println("Warning to customer: " +e.getMessage());
+            System.out.println("Warning to the customer: " +e.getMessage());
         }
         System.out.println("=== END OF SIMULATION ===");
 

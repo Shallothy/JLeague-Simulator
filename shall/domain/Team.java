@@ -7,12 +7,12 @@ import java.util.Arrays;
 
 public class Team {
     private String teamName;
-    private final Player[] PLAYERS;
+    private final Player[] players;
     private Coach coach;
     private int size;
 
     public Team(){
-        this("Unamed team", 25);
+        this("Unnamed team", 25);
     }
 
     public Team(String teamName){
@@ -22,9 +22,9 @@ public class Team {
     public Team(String teamName, int capacity){
         this.teamName =teamName;
         if(capacity <= 25) {
-            this.PLAYERS = new Player[capacity];
+            this.players = new Player[capacity];
         } else {
-            this.PLAYERS =new Player[25];
+            this.players =new Player[25];
         }
         this.size =0;
     }
@@ -41,18 +41,18 @@ public class Team {
         this.coach = coach;
     }
 
-    public Player[] getPlayers(){ return Arrays.copyOf(this.PLAYERS, this.size); }
+    public Player[] getPlayers(){ return Arrays.copyOf(this.players, this.size); }
 
     public void addPlayer(Player player) {
         if(player==null){
             throw new NullPlayerException("Couldn't add a null player.");
         }
 
-        if(size>=this.PLAYERS.length){
+        if(size>=this.players.length){
             throw new FullTeam("The team is full.");
         }
 
-        this.PLAYERS[size] =player;
+        this.players[size] =player;
         size++;
     }
 
@@ -62,9 +62,9 @@ public class Team {
         }
 
         boolean found =false;
-        for (int i = 0; i < this.PLAYERS.length; i++) {
-            if(this.PLAYERS[i] != null && this.PLAYERS[i].getName().equals(player.getName())) {
-                PLAYERS[i] =null;
+        for (int i = 0; i < this.players.length; i++) {
+            if(this.players[i] != null && this.players[i].getName().equals(player.getName())) {
+                players[i] =null;
                 found =true;
                 System.out.println("✅ " +player.getName() +" left " + this.getTeamName() +".");
                 this.size--;
@@ -77,24 +77,24 @@ public class Team {
         }
     }
 
-    public Player getTopScored() {
+    public Player getTopScorer() {
         if(size==0){
             return null;
         }
 
-        Player topScored =this.PLAYERS[0];
+        Player topScorer =this.players[0];
 
         for (int i = 1; i < size; i++) {
-            if(topScored.getGoalsScored() < this.PLAYERS[i].getGoalsScored()){
-                topScored =this.PLAYERS[i];
+            if(topScorer.getGoalsScored() < this.players[i].getGoalsScored()){
+                topScorer =this.players[i];
             }
         }
-        topScored.topScored();
-        return topScored;
+        topScorer.topScorer();
+        return topScorer;
     }
 
-    public void printDataTeam() {
-        System.out.println("Printing dataTeam...");
+    public void printTeamData() {
+        System.out.println("Printing teamData...");
         System.out.printf("teamName: %s%n", this.getTeamName());
         if(this.coach!=null) {
             System.out.printf("Coach: %s%n", this.coach.getName());
@@ -106,11 +106,11 @@ public class Team {
             System.out.println("There is no one on the team");
 
         } else {
-            System.out.println("PLAYERS:");
-            for (int i = 0; i < PLAYERS.length; i++) {
+            System.out.println("players:");
+            for (int i = 0; i < players.length; i++) {
                 // CADEADO DE SEGURANÇA: Só imprime se a vaga NÃO estiver vazia!
-                if (PLAYERS[i] != null) {
-                    PLAYERS[i].printData();
+                if (players[i] != null) {
+                    players[i].printData();
                 }
             }
         }

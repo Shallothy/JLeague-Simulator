@@ -5,7 +5,7 @@ import shall.domain.Team;
 import shall.domain.enums.Gender;
 
 public class Test05 {
-    static void main() {
+    static void main(String[] args) {
         Player player1 = new Player("Rebeca",21, Gender.GENDER_FEMALE,7);
         Player player2 = new Player("Rodrigo",22,Gender.GENDER_MALE,12);
         Player player3 = new Player("Aylla",9, Gender.GENDER_FEMALE,11);
@@ -35,11 +35,11 @@ public class Test05 {
         System.out.print("Category of Daughter: \t");player3.checkingCategory();
         System.out.print("Category of Son: \t");player4.checkingCategory();
 
-        Player topScored = team1.getTopScored();
+        Player topScorer = team1.getTopScorer();
 
-        if(topScored!=null){
-            System.out.printf("The topScored is %s with %d goal(s)%n",
-                    topScored.getName(), topScored.getGoalsScored());
+        if(topScorer!=null){
+            System.out.printf("The topScorer is %s with %d goal(s)%n",
+                    topScorer.getName(), topScorer.getGoalsScored());
         }
     }
 }

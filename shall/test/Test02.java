@@ -6,7 +6,7 @@ import shall.domain.enums.Gender;
 
 
 public class Test02 {
-    static void main() {
+    static void main(String[] args) {
         Player player1 = new Player("Rebeca",21, Gender.GENDER_FEMALE,7);
         Player player2 = new Player("Rodrigo",22,Gender.GENDER_MALE,12);
         Player player3 = new Player("Márcio",32, Gender.GENDER_MALE, 36);
@@ -17,7 +17,7 @@ public class Test02 {
         team1.addPlayer(player1);
         team1.addPlayer(player2);
 
-//        team1.printDataTeam();
+        team1.printTeamData();
 
         System.out.println("------------");
         Team team2 = new Team();
@@ -25,7 +25,7 @@ public class Test02 {
         team2.setTeamName("Montenegro");
         team2.addPlayer(player3);
         team2.addPlayer(player4);
-        team2.printDataTeam();
+        team2.printTeamData();
 
 
         player1.printData();

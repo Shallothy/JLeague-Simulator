@@ -6,7 +6,7 @@ import shall.domain.enums.Gender;
 import shall.services.Check;
 
 public class Test03 {
-    static void main() {
+    static void main(String[] args) {
 
         Player player1 = new Player("Rebeca",21,Gender.GENDER_FEMALE,7);
         Player player2 = new Player("Rodrigo",22,Gender.GENDER_MALE,12);
