@@ -13,7 +13,7 @@ public class Coach extends Person implements Disciplinable {
     private int yellowCard;
 
     public Coach() {
-        this("Unnamed Coach", 18, null, "4-4-2", 0);
+        this("Unnamed", 18, null, "4-4-2", 0);
     }
 
     public Coach(String name, int age) {
@@ -98,7 +98,7 @@ public class Coach extends Person implements Disciplinable {
 
     @Override
     public void printData() {
-        System.out.println("--- Printing dataTeam ---");
+        System.out.println("--- Printing teamData ---");
         System.out.println("name: " +getName());
         System.out.println("age: " +getAge());
         System.out.println("gender: " +getGender());

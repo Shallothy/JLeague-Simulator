@@ -1,47 +1,66 @@
 package shall.domain;
 
+import java.util.Optional;
+
 public class Match {
-    private final Team HOME_TEAM;
-    private final Team VISITE_TEAM;
+    private final Team homeTeam;
+    private final Team visitingTeam;
     private int homeScore;
     private int visitingScore;
 
-    public Match(Team HOME_TEAM, Team VISITE_TEAM) {
-        this.HOME_TEAM = HOME_TEAM;
-        this.VISITE_TEAM = VISITE_TEAM;
-        this.homeScore =0;
-        this.visitingScore =0;
+    public Match(Team homeTeam, Team visitingTeam) {
+        this.homeTeam = homeTeam;
+        this.visitingTeam = visitingTeam;
+        this.homeScore = 0;
+        this.visitingScore = 0;
     }
-    public void winnerMatch(){
-        if(homeScore> visitingScore){
-            System.out.printf("HOME_TEAM: %s, a total of: %d goal(s)%n" +
-                    "VISITE_TEAM: %s, a total of: %d goal(s)%n%s winner!%n",
-                    HOME_TEAM.getTeamName(), homeScore, VISITE_TEAM.getTeamName(), visitingScore, HOME_TEAM.getTeamName());
-        } else if (homeScore< visitingScore) {
-            System.out.printf("HOME_TEAM: %s, a total of: %d goal(s)%n" +
-                    "VISITE_TEAM: %s, a total of: %d goal(s)%n%s winner!%n",
-                    HOME_TEAM.getTeamName(), homeScore, VISITE_TEAM.getTeamName(), visitingScore, VISITE_TEAM.getTeamName());
+
+    public void addHomeGoal() {
+        this.homeScore++;
+    }
+
+    public void addVisitingGoal() {
+        this.visitingScore++;
+    }
+
+    public Team getHomeTeam() {
+        return homeTeam;
+    }
+
+    public Team getVisitingTeam() {
+        return visitingTeam;
+    }
+
+    public int getHomeScore() {
+        return homeScore;
+    }
+
+    public int getVisitingScore() {
+        return visitingScore;
+    }
+
+    /**
+     * Determina o vencedor da partida.
+     *
+     * @return um Optional contendo o time vencedor, ou um Optional vazio se for empate.
+     */
+    public Optional<Team> getWinner() {
+        if (homeScore > visitingScore) {
+            return Optional.of(homeTeam);
+        } else if (visitingScore > homeScore) {
+            return Optional.of(visitingTeam);
         } else {
-            System.out.printf("HOME_TEAM: %s, a total of: %d goal(s)%n" +
-                    "VISITE_TEAM: %s, a total of: %d goal(s)%nDrawn!%n",
-                    HOME_TEAM.getTeamName(), homeScore, VISITE_TEAM.getTeamName(), visitingScore);
+            return Optional.empty(); // Representa um empate
         }
     }
 
-    public String score(){
-        return String.format("%s x %s\n\t%d \tx \t%d",
-                HOME_TEAM.getTeamName(), VISITE_TEAM.getTeamName(), homeScore, visitingScore);
+    public boolean isDraw() {
+        return homeScore == visitingScore;
     }
 
-    public void goalHome() {
-        System.out.printf("%s scored a goal%n", HOME_TEAM.getTeamName());
-        ++this.homeScore;
-        System.out.println(score());
-
-    }
-    public void goalVisit(){
-        System.out.printf("%s scored a goal%n", VISITE_TEAM.getTeamName());
-        ++this.visitingScore;
-        System.out.println(score());
+    public String getScoreboard() {
+        return String.format("%s %d x %d %s",
+                homeTeam.getTeamName(), homeScore,
+                visitingScore, visitingTeam.getTeamName());
     }
 }

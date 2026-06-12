@@ -16,7 +16,7 @@ public class Player extends Person implements Disciplinable {
     private int goalsScored;
     private boolean isExpelled;
 
-    public Player(){this("Unnamed",6, null, 0);}
+    public Player(){this("Unnamed Player",6, null, 0);}
 
     public Player(String name, int age) {
         super(name, age);
@@ -35,8 +35,8 @@ public class Player extends Person implements Disciplinable {
         this.category = Check.checkingSubCategory(age);
     }
 
-    protected void topScored(){
-        System.out.printf("The player soccer: %s is the topScored on the team. with %d goal%n",
+    protected void topScorer(){
+        System.out.printf("The player soccer: %s is the topScorer on the team. with %d goal%n",
                 this.getName(), this.getGoalsScored());
         System.out.print("Category: \t");
         checkingCategory();
@@ -121,7 +121,7 @@ public class Player extends Person implements Disciplinable {
 
     @Override
     public void printData() {
-        System.out.println("--- Printing dataPlayer... ---");
+        System.out.println("--- Printing playerData... ---");
         System.out.println("name: " +this.getName());
         System.out.println("age: " +this.getAge());
         System.out.println("gender: " +this.getGender());
